@@ -57,13 +57,18 @@
         
         /* 파티클 캔버스 레이어 배치 */
         #particle-canvas {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 1;
+            z-index: 40; /* 콘텐츠 위로 떠다니며 완벽히 노출되도록 설정 (헤더 50 아래) */
+        }
+
+        /* 스크롤 탑 & 게이지 링 스타일링 */
+        .scroll-ring-circle {
+            transition: stroke-dashoffset 0.1s ease;
         }
     </style>
 </head>
@@ -71,6 +76,15 @@
 
     <!-- Background Particle Canvas -->
     <canvas id="particle-canvas"></canvas>
+
+    <!-- Right-Top Floating Scroll Progress Circle -->
+    <div class="fixed top-20 right-6 z-50 flex items-center justify-center bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-2 rounded-full shadow-lg pointer-events-none">
+        <svg class="w-10 h-10 transform -rotate-90">
+            <circle class="text-slate-200 dark:text-slate-800" stroke-width="3" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" />
+            <circle class="text-brand-600 dark:text-brand-400 scroll-ring-circle" stroke-width="3" stroke-dasharray="100.5" stroke-dashoffset="100.5" stroke-linecap="round" stroke="currentColor" fill="transparent" r="16" cx="20" cy="20" id="scroll-gauge-circle" />
+        </svg>
+        <span class="absolute text-[10px] font-bold text-slate-600 dark:text-slate-300" id="scroll-percentage-text">0%</span>
+    </div>
 
     <!-- Header Section -->
     <header class="border-b border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-950/80 backdrop-blur sticky top-0 z-50">
@@ -138,11 +152,11 @@
                     더 넓은 세상을 향해 닻을 올렸던 무역 전문가에서, 이제 기술 생태계를 주도해 나가기 위해 SSAFY라는 광활한 그라운드에 첫 발을 내딛은 준비된 개척자입니다.
                 </p>
 
-                <!-- 최장현 프로필 사진 영역 (이케아_3.jpg) -->
+                <!-- 최장현 프로필 사진 영역 (1.jpg) -->
                 <div class="my-4 relative group">
                     <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-blue-400 rounded-2xl blur opacity-25 group-hover:opacity-40 smooth-transition"></div>
                     <div class="relative bg-white dark:bg-slate-900 p-2 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-xl max-w-[260px] sm:max-w-[280px]">
-                        <img src="이케아_3.jpg" alt="최장현 프로필 사진" class="w-56 h-72 sm:w-60 sm:h-80 object-cover rounded-xl shadow-inner smooth-transition group-hover:scale-[1.02]">
+                        <img src="1.jpg" alt="최장현 프로필 사진" class="w-56 h-72 sm:w-60 sm:h-80 object-cover rounded-xl shadow-inner smooth-transition group-hover:scale-[1.02]">
                         <div class="absolute bottom-4 right-4 bg-brand-600 text-white rounded-full p-2.5 shadow-md">
                             <i data-lucide="coffee" class="w-4 h-4"></i>
                         </div>
@@ -268,7 +282,7 @@
                 </div>
 
                 <!-- Card 3: 배움 -->
-                <div class="group bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 rounded-2xl hover:border-emerald-600/30 dark:hover:border-emerald-500/40 hover:bg-white dark:hover:bg-slate-900 smooth-transition hover:-translate-y-1.5 shadow-sm">
+                <div class="group bg-slate-50 dark:bg-slate-950 border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 rounded-2xl hover:border-emerald-600/30 dark:hover:border-emerald-550/40 hover:bg-white dark:hover:bg-slate-900 smooth-transition hover:-translate-y-1.5 shadow-sm">
                     <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mb-6 group-hover:scale-105 smooth-transition">
                         <i data-lucide="book-open" class="w-6 h-6 sm:w-7 sm:h-7"></i>
                     </div>
@@ -277,6 +291,61 @@
                     <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
                         매주 수없이 쏟아지는 새로운 개발 스펙과 기술 스택을 빠르게 분석하고, 자기 것으로 만드는 자기주도 학습에 최적화되어 있습니다. 배우는 것 자체를 즐거워합니다.
                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 Pioneer Interactive Q&A Section -->
+    <section id="qa-console" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 border-b border-slate-200/80 dark:border-slate-900 relative">
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-brand-600 dark:text-brand-400 text-xs font-bold tracking-widest uppercase block mb-2">Interactive Terminal</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">최장현의 개척 스토리 콘솔</h2>
+                <p class="text-slate-500 dark:text-slate-400 text-xs sm:text-base mt-2">궁금한 질문 단추를 눌러 개척자의 실제 답변을 실시간으로 확인해보세요!</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                <!-- Left Buttons -->
+                <div class="md:col-span-5 space-y-3 flex flex-col">
+                    <button onclick="askPioneer('nanjing', this)" data-key="nanjing" class="qa-btn active w-full text-left px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-600 hover:shadow-md smooth-transition text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-3">
+                        <span>🇨🇳</span> 남경대 유학은 어땠나요?
+                    </button>
+                    <button onclick="askPioneer('hyosung', this)" data-key="hyosung" class="qa-btn w-full text-left px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-600 hover:shadow-md smooth-transition text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-3">
+                        <span>🚢</span> 효성 무역 프로젝트는 무엇인가요?
+                    </button>
+                    <button onclick="askPioneer('dokdo', this)" data-key="dokdo" class="qa-btn w-full text-left px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-600 hover:shadow-md smooth-transition text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-3">
+                        <span>🛡️</span> 독도경비대 생활은 힘들었나요?
+                    </button>
+                    <button onclick="askPioneer('hobby', this)" data-key="hobby" class="qa-btn w-full text-left px-5 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-brand-600 hover:shadow-md smooth-transition text-sm font-bold text-slate-700 dark:text-slate-300 flex items-center gap-3">
+                        <span>⚽</span> 축구와 똘이 이야기를 해주세요!
+                    </button>
+                </div>
+
+                <!-- Right Terminal Display -->
+                <div class="md:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl relative min-h-[280px] flex flex-col justify-between">
+                    <div class="absolute inset-x-0 top-0 h-10 bg-slate-950 border-b border-slate-850 px-4 flex items-center justify-between">
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 font-mono">pioneer-chat.sh</span>
+                        <div class="w-12"></div>
+                    </div>
+                    
+                    <div class="mt-8 font-mono text-xs leading-relaxed space-y-4 flex-grow flex flex-col justify-start">
+                        <div class="flex items-center gap-2 text-brand-400">
+                            <span>$</span>
+                            <span>curl -s https://pioneer.choi/profile</span>
+                        </div>
+                        <div id="terminal-output" class="text-slate-300 whitespace-pre-line leading-relaxed min-h-[140px] pl-2 border-l border-brand-500/30">
+                            <!-- JS에 의해 타이핑 효과로 렌더링됩니다 -->
+                        </div>
+                    </div>
+                    <div class="text-[10px] text-slate-600 font-mono text-right mt-4 pt-2 border-t border-slate-850">
+                        Response Status: 200 OK
+                    </div>
                 </div>
             </div>
         </div>
@@ -296,7 +365,7 @@
                 <!-- Center Line (Mobile: Left-aligned, Desktop: Center-aligned) -->
                 <div class="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-600 to-indigo-400/20"></div>
 
-                <!-- Step 1: 남경대학교 (남경대_3.jpg) -->
+                <!-- Step 1: 남경대학교 (2.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch mb-12 sm:mb-16">
                     <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0 w-full">
                         <div class="p-5 sm:p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl hover:border-brand-500/30 dark:hover:border-brand-500/30 smooth-transition shadow-sm hover:shadow-md">
@@ -307,7 +376,7 @@
                             </p>
                             <!-- 남경대 이미지 -->
                             <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm mt-3">
-                                <img src="남경대_3.jpg" alt="남경대학교 졸업사진" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
+                                <img src="2.jpg" alt="남경대학교 졸업사진" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
                             </div>
                         </div>
                     </div>
@@ -316,7 +385,7 @@
                     <div class="hidden sm:block sm:w-1/2"></div>
                 </div>
 
-                <!-- Step 2: 독도경비대 (독도경비대_3.jpg) -->
+                <!-- Step 2: 독도경비대 (3.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch mb-12 sm:mb-16">
                     <div class="hidden sm:block sm:w-1/2"></div>
                     <!-- Indicator Node -->
@@ -331,13 +400,13 @@
                             </p>
                             <!-- 독도경비대 이미지 -->
                             <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm mt-3">
-                                <img src="독도경비대_3.jpg" alt="독도경비대 사진" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
+                                <img src="3.jpg" alt="독도경비대 사진" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3: 효성티앤씨 무역부문 (사내 방송_3.jpg) -->
+                <!-- Step 3: 효성티앤씨 무역부문 (4.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch">
                     <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0 w-full">
                         <div class="p-5 sm:p-6 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl hover:border-amber-500/30 dark:hover:border-amber-500/30 smooth-transition shadow-sm hover:shadow-md">
@@ -353,7 +422,7 @@
                             </div>
                             <!-- 사내 방송 이미지 -->
                             <div class="overflow-hidden rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm mt-3">
-                                <img src="사내 방송_3.jpg" alt="효성티앤씨 인터뷰 방송화면" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
+                                <img src="4.jpg" alt="효성티앤씨 인터뷰 방송화면" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition">
                             </div>
                         </div>
                     </div>
@@ -541,6 +610,77 @@
     <script>
         // Lucide Icons Render
         lucide.createIcons();
+
+        // 0. 스크롤 진행률 서클 업데이트 로직
+        const circle = document.getElementById('scroll-gauge-circle');
+        const pctText = document.getElementById('scroll-percentage-text');
+        
+        // r = 16인 원의 둘레: 2 * Math.PI * 16 ≒ 100.53
+        const circumference = 2 * Math.PI * 16;
+        circle.style.strokeDasharray = `${circumference}`;
+
+        function updateScrollProgress() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            
+            const offset = circumference - (scrollPercentage / 100) * circumference;
+            circle.style.strokeDashoffset = offset;
+            pctText.innerText = `${Math.round(scrollPercentage)}%`;
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+        window.addEventListener('resize', updateScrollProgress);
+
+        // 0.5 Pioneer Q&A 인터랙티브 로직 및 타이핑 효과
+        const qaData = {
+            nanjing: "남경대학교 국제정치학 전공은 제 글로벌 안목의 초석이 되었습니다.\n다양한 국적의 학우들과 교류하며, 다름을 존중하는 커뮤니케이션 능력과 현지 비즈니스 중국어 감각을 연마했습니다. 이 유연한 커뮤니케이션 능력은 복잡한 IT 요구사항을 분석하고 조율할 때 빛을 발할 것입니다.",
+            hyosung: "효성TNC에서 스페인 풍력 타워 프로젝트를 전담하며, 국내산 철강 수입부터 인도 현지 타워 생산, 그리고 유럽 재수출에 이르는 대형 무역 프로세스의 안전장치를 설계하고 조율했습니다.\n거대한 아키텍처를 빈틈없이 정돈하는 저의 꼼꼼함은 이제 클린 코드와 탄탄한 DB 구조를 위해 투입됩니다.",
+            dokdo: "대한민국의 동쪽 끝, 거센 풍랑 속 독도에서 전우들의 삼시세끼를 책임지는 취사병 임무를 수행했습니다.\n척박하고 제한된 자원 속에서도 단 한 번의 결식 없이 묵묵하게 임무를 완수하며 협동심과 강철 같은 끈기, 오너십을 갖추게 되었습니다.",
+            hobby: "요즘 북중미 월드컵 아시아 예선에 푹 빠져 매 경기 뜨겁게 응원하고 있습니다! 그라운드를 시원하게 가르는 정교한 패스처럼, 팀원들에게 꼭 필요한 도움을 찔러주는 전천후 플레이어 개발자가 되겠습니다.\n또한 본가에는 저를 너무나 사랑해주는 7살 비숑프리제 '최강아지' 똘이가 있어 지칠 때마다 큰 활력을 얻고 있습니다!"
+        };
+
+        let typingTimer = null;
+
+        function askPioneer(key, btnElement) {
+            // 버튼 액티브 스타일 조절
+            const buttons = document.querySelectorAll('.qa-btn');
+            buttons.forEach(btn => btn.classList.remove('border-brand-600', 'shadow-md', 'dark:border-brand-500'));
+            
+            // 클릭된 버튼 강조 (초기 로딩 시에는 data-key 속성으로 버튼 탐색)
+            const activeBtn = btnElement || document.querySelector(`.qa-btn[data-key="${key}"]`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-brand-600', 'shadow-md');
+            }
+            
+            const targetElement = document.getElementById('terminal-output');
+            const fullText = qaData[key];
+            
+            // 기존 타이핑 작업 정지
+            if (typingTimer) clearInterval(typingTimer);
+            
+            // 타이핑 효과 실행
+            targetElement.innerHTML = "";
+            let i = 0;
+            typingTimer = setInterval(() => {
+                if (i < fullText.length) {
+                    if (fullText[i] === '\n') {
+                        targetElement.innerHTML += '<br>';
+                    } else {
+                        targetElement.innerHTML += fullText[i];
+                    }
+                    i++;
+                } else {
+                    clearInterval(typingTimer);
+                }
+            }, 12);
+        }
+
+        // 초기 기본 활성화 답변 실행
+        window.addEventListener('load', () => {
+            askPioneer('nanjing');
+            updateScrollProgress();
+        });
 
         // 1. 다크모드 / 라이트모드 토글 로직
         const themeToggleBtn = document.getElementById('theme-toggle');
