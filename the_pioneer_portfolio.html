@@ -34,7 +34,7 @@
         @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
         
         .hero-gradient {
-            background: radial-gradient(circle at 70% 30%, rgba(29, 78, 216, 0.15) 0%, transparent 60%);
+            background: radial-gradient(circle at 70% 30%, rgba(29, 78, 216, 0.1) 0%, transparent 60%);
         }
 
         /* 부드러운 호버 트랜지션 전역 적용 */
@@ -64,6 +64,8 @@
                 <span class="px-2.5 py-0.5 text-xs font-bold tracking-wider bg-brand-50 text-brand-600 rounded-full border border-brand-100">SSAFY 16기</span>
                 <span class="text-lg font-black tracking-wider text-brand-900">THE PIONEER</span>
             </div>
+            
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
                 <a href="#hero" class="hover:text-brand-600 smooth-transition">소개</a>
                 <a href="#about" class="hover:text-brand-600 smooth-transition">나의 포부</a>
@@ -71,57 +73,83 @@
                 <a href="#timeline" class="hover:text-brand-600 smooth-transition">히스토리</a>
                 <a href="#gallery" class="hover:text-brand-600 smooth-transition">일상/갤러리</a>
             </nav>
-            <div>
-                <a href="#cta" class="px-4 py-2 text-xs font-bold bg-brand-900 hover:bg-brand-800 text-white rounded-lg smooth-transition shadow-md shadow-brand-900/10">
+
+            <div class="flex items-center gap-4">
+                <a href="#cta" class="hidden sm:inline-block px-4 py-2 text-xs font-bold bg-brand-900 hover:bg-brand-800 text-white rounded-lg smooth-transition shadow-md shadow-brand-900/10">
                     커피챗 제안하기
                 </a>
+                <!-- Mobile Menu Button (Hamburger) -->
+                <button id="menu-btn" class="md:hidden p-2 text-slate-600 hover:text-brand-600 focus:outline-none" aria-label="메뉴 열기">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Slide Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-6 py-4 space-y-3 shadow-lg transition-all duration-300">
+            <a href="#hero" class="block py-2 text-sm font-bold text-slate-700 hover:text-brand-600">소개</a>
+            <a href="#about" class="block py-2 text-sm font-bold text-slate-700 hover:text-brand-600">나의 포부</a>
+            <a href="#charm" class="block py-2 text-sm font-bold text-slate-700 hover:text-brand-600">핵심역량</a>
+            <a href="#timeline" class="block py-2 text-sm font-bold text-slate-700 hover:text-brand-600">히스토리</a>
+            <a href="#gallery" class="block py-2 text-sm font-bold text-slate-700 hover:text-brand-600">일상/갤러리</a>
+            <a href="#cta" class="block w-full text-center py-2.5 mt-4 text-xs font-bold bg-brand-900 text-white rounded-lg">커피챗 제안하기</a>
         </div>
     </header>
 
     <!-- 1. Hero Section (나를 소개합니다) -->
-    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center py-20 bg-white overflow-hidden hero-gradient">
+    <section id="hero" class="relative min-h-[85vh] flex items-center justify-center py-12 sm:py-20 bg-white overflow-hidden hero-gradient">
         <!-- Background Grid Pattern -->
         <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-40"></div>
 
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 w-full">
             <!-- Left Info -->
-            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
                 <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-50 border border-brand-100/60">
                     <span class="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
                     <span class="text-xs font-bold text-brand-900">새로운 가능성을 개척하는 사람</span>
                 </div>
                 
-                <h1 class="text-4xl sm:text-6xl font-black text-slate-900 leading-[1.15] tracking-tight">
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 leading-[1.2] lg:leading-[1.15] tracking-tight">
                     나를 소개합니다<br>
                     <span class="text-gradient">The Pioneer, 최장현</span>
                 </h1>
                 
-                <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <p class="text-slate-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0">
                     더 넓은 세상을 향해 닻을 올렸던 무역 전문가에서, 이제 기술 생태계를 주도해 나가기 위해 SSAFY라는 광활한 그라운드에 첫 발을 내딛은 준비된 개척자입니다.
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-4">
-                    <a href="#cta" class="w-full sm:w-auto px-6 py-3.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-xl smooth-transition shadow-lg shadow-brand-900/10 flex items-center justify-center gap-2">
+                <!-- 최장현 프로필 사진 추가 영역 (이케아_3.jpg) -->
+                <div class="my-4 relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-600 to-blue-400 rounded-2xl blur opacity-20 group-hover:opacity-35 transition duration-1000"></div>
+                    <div class="relative bg-white p-2 rounded-2xl border border-slate-200 shadow-xl max-w-[260px] sm:max-w-[280px]">
+                        <img src="이케아_3.jpg" alt="최장현 프로필 사진" class="w-56 h-72 sm:w-60 sm:h-80 object-cover rounded-xl shadow-inner smooth-transition group-hover:scale-[1.02]" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400';">
+                        <div class="absolute bottom-4 right-4 bg-brand-600 text-white rounded-full p-2.5 shadow-md">
+                            <i data-lucide="coffee" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start pt-2 w-full sm:w-auto">
+                    <a href="#cta" class="w-full sm:w-auto px-6 py-3.5 bg-brand-900 hover:bg-brand-800 text-white font-bold rounded-xl smooth-transition shadow-lg shadow-brand-900/10 flex items-center justify-center gap-2 text-sm">
                         <span>프로필 깊이보기</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </a>
-                    <a href="#timeline" class="w-full sm:w-auto px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl smooth-transition flex items-center justify-center gap-2">
+                    <a href="#timeline" class="w-full sm:w-auto px-6 py-3.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl smooth-transition flex items-center justify-center gap-2 text-sm">
                         <span>경력 및 이력 보기</span>
                     </a>
                 </div>
             </div>
 
             <!-- Right Interactive Graphic -->
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="relative w-full max-w-[400px] h-[360px] bg-white border border-slate-200/80 rounded-2xl p-6 device-shadow overflow-hidden group">
+            <div class="lg:col-span-5 flex justify-center w-full">
+                <div class="relative w-full max-w-[400px] h-[340px] bg-white border border-slate-200/80 rounded-2xl p-6 device-shadow overflow-hidden group">
                     <div class="absolute inset-x-0 top-0 h-10 bg-slate-100 border-b border-slate-200 px-4 flex items-center gap-1.5">
                         <span class="w-3 h-3 rounded-full bg-red-400"></span>
                         <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
                         <span class="w-3 h-3 rounded-full bg-green-400"></span>
                         <span class="text-[10px] text-slate-400 font-mono ml-4">the-pioneer-choi.html</span>
                     </div>
-                    <div class="mt-8 space-y-4 text-xs font-mono text-slate-500">
+                    <div class="mt-8 space-y-3.5 text-xs font-mono text-slate-500">
                         <div class="text-blue-600">&lt;div class="pioneer-profile"&gt;</div>
                         <div class="pl-4"><span class="text-indigo-600">const</span> name = <span class="text-green-600">"최장현"</span>;</div>
                         <div class="pl-4"><span class="text-indigo-600">const</span> globalBackground = [<span class="text-green-600">"Nanjing Univ"</span>, <span class="text-green-600">"Hyosung TNC"</span>];</div>
@@ -148,34 +176,34 @@
     </section>
 
     <!-- 2. About Section (나는 누구인가요?) -->
-    <section id="about" class="py-24 bg-slate-900 text-slate-100 relative overflow-hidden">
+    <section id="about" class="py-16 sm:py-24 bg-slate-900 text-slate-100 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,rgba(29,78,216,0.1),transparent_50%)]"></div>
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <div class="text-center mb-12">
                 <span class="text-brand-500 text-xs font-bold tracking-widest uppercase block mb-2">My Story</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">나는 누구인가요?</h2>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white">나는 누구인가요?</h2>
             </div>
             
-            <div class="bg-slate-800/60 border border-slate-800 p-8 sm:p-10 rounded-3xl space-y-6 leading-relaxed">
-                <div class="flex flex-col sm:flex-row gap-6 items-start">
+            <div class="bg-slate-800/60 border border-slate-800 p-6 sm:p-10 rounded-3xl space-y-6 leading-relaxed">
+                <div class="flex flex-col sm:flex-row gap-5 items-start">
                     <div class="w-12 h-12 rounded-2xl bg-brand-600/20 text-brand-400 flex items-center justify-center flex-shrink-0">
                         <i data-lucide="compass" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-2">실물 무역의 전선에서 디지털 대륙의 개척자로</h3>
-                        <p class="text-slate-300 text-sm sm:text-base">
-                            세계 속을 누비며 철강 수출 프로젝트의 공급 체인을 이끌었습니다. 거대한 에너지 생산 단지가 세워지는 현장을 조율하며 값진 성과를 냈지만, 시대의 흐름인 '디지털 트랜스포메이션'을 직접 설계하는 엔지니어가 되고 싶다는 더 큰 열망이 피어올랐습니다.
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">실물 무역의 전선에서 디지털 대륙의 개척자로</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                            세계 속을 누비며 철강 수출 프로젝트의 공급 체인을 이끌었습니다. 거대한 에너지 생산 단지가 세워지는 현장을 조율하며 값진 성과를 냈다지만, 시대의 흐름인 '디지털 트랜스포메이션'을 직접 설계하는 엔지니어가 되고 싶다는 더 큰 열망이 피어올랐습니다.
                         </p>
                     </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row gap-6 items-start pt-6 border-t border-slate-800/80">
+                <div class="flex flex-col sm:flex-row gap-5 items-start pt-6 border-t border-slate-800/80">
                     <div class="w-12 h-12 rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center flex-shrink-0">
                         <i data-lucide="sparkles" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white mb-2">"솔직히 될 줄 몰랐던" 도전, 그리고 새로운 한걸음</h3>
-                        <p class="text-slate-300 text-sm sm:text-base">
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-2">"솔직히 될 줄 몰랐던" 도전, 그리고 새로운 한걸음</h3>
+                        <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
                             완전히 새로운 영역인 SW에 도전하는 일은 쉽지 않은 결정이었습니다. 솔직히 SSAFY 합격 소식을 들었을 때 "정말 내가 될 줄 몰랐는데!" 하는 놀라움과 함께, 가슴 한구석에서 뜨거운 설렘이 차올랐습니다. 
                             한 번 정해진 경계에 머무르지 않고, 철저한 근성과 개척 능력으로 동료들과 함께 성장해 나가는 완벽한 파트너가 되겠습니다.
                         </p>
@@ -186,47 +214,47 @@
     </section>
 
     <!-- 3. Charm Point Cards (매력 포인트 3개) -->
-    <section id="charm" class="py-24 bg-white relative">
+    <section id="charm" class="py-16 sm:py-24 bg-white relative">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-12 sm:text-center">
                 <span class="text-brand-600 text-xs font-bold tracking-widest uppercase block mb-2">Charm Points</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">최장현을 차별화하는 세 가지 매력</h2>
-                <p class="text-slate-500 text-sm sm:text-base mt-2">협업하고 싶고, 함께 개발하고 싶은 최고의 무기를 확인해 보세요.</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">최장현을 차별화하는 세 가지 매력</h2>
+                <p class="text-slate-500 text-xs sm:text-base mt-2">협업하고 싶고, 함께 개발하고 싶은 최고의 무기를 확인해 보세요.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Card 1: 도전 -->
-                <div class="group bg-slate-50 border border-slate-200/80 p-8 rounded-2xl hover:border-brand-600/30 hover:bg-white smooth-transition hover:-translate-y-2">
-                    <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-8 group-hover:scale-115 smooth-transition">
-                        <i data-lucide="flame" class="w-7 h-7"></i>
+                <div class="group bg-slate-50 border border-slate-200/80 p-6 sm:p-8 rounded-2xl hover:border-brand-600/30 hover:bg-white smooth-transition hover:-translate-y-1.5 shadow-sm">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center mb-6 group-hover:scale-105 smooth-transition">
+                        <i data-lucide="flame" class="w-6 h-6 sm:w-7 sm:h-7"></i>
                     </div>
-                    <span class="text-xs font-extrabold text-brand-600 uppercase tracking-wider block mb-2">CHALLENGE</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">한계가 없는 도전 정신</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <span class="text-[10px] font-extrabold text-brand-600 uppercase tracking-wider block mb-1">CHALLENGE</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">한계가 없는 도전 정신</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                         전혀 모르는 무역 실전 현장에서 수억 대의 자원 공급 계약을 성사시켰듯, 낯선 소스코드와 거대한 알고리즘 앞에서도 도망치지 않고 돌파해 내는 저돌적인 행동가입니다.
                     </p>
                 </div>
 
                 <!-- Card 2: 성장 -->
-                <div class="group bg-slate-50 border border-slate-200/80 p-8 rounded-2xl hover:border-indigo-600/30 hover:bg-white smooth-transition hover:-translate-y-2">
-                    <div class="w-14 h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-8 group-hover:scale-115 smooth-transition">
-                        <i data-lucide="trending-up" class="w-7 h-7"></i>
+                <div class="group bg-slate-50 border border-slate-200/80 p-6 sm:p-8 rounded-2xl hover:border-indigo-600/30 hover:bg-white smooth-transition hover:-translate-y-1.5 shadow-sm">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-6 group-hover:scale-105 smooth-transition">
+                        <i data-lucide="trending-up" class="w-6 h-6 sm:w-7 sm:h-7"></i>
                     </div>
-                    <span class="text-xs font-extrabold text-indigo-600 uppercase tracking-wider block mb-2">GROWTH</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">융합을 통한 단단한 성장</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <span class="text-[10px] font-extrabold text-indigo-600 uppercase tracking-wider block mb-1">GROWTH</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">융합을 통한 단단한 성장</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                         국제정치와 글로벌 무역으로 닦아낸 비즈니스 감각에 깊이 있는 개발 기술을 더합니다. 단순 기능 구현을 넘어, 실제 시장에서 유저와 비즈니스가 숨 쉬는 고부가가치 아키텍처를 그립니다.
                     </p>
                 </div>
 
                 <!-- Card 3: 배움 -->
-                <div class="group bg-slate-50 border border-slate-200/80 p-8 rounded-2xl hover:border-emerald-600/30 hover:bg-white smooth-transition hover:-translate-y-2">
-                    <div class="w-14 h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-8 group-hover:scale-115 smooth-transition">
-                        <i data-lucide="book-open" class="w-7 h-7"></i>
+                <div class="group bg-slate-50 border border-slate-200/80 p-6 sm:p-8 rounded-2xl hover:border-emerald-600/30 hover:bg-white smooth-transition hover:-translate-y-1.5 shadow-sm">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6 group-hover:scale-105 smooth-transition">
+                        <i data-lucide="book-open" class="w-6 h-6 sm:w-7 sm:h-7"></i>
                     </div>
-                    <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-wider block mb-2">LEARNING</span>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">스폰지 같은 흡수와 배움</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
+                    <span class="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider block mb-1">LEARNING</span>
+                    <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">스폰지 같은 흡수와 배움</h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                         매주 수없이 쏟아지는 새로운 개발 스펙과 기술 스택을 빠르게 분석하고, 자기 것으로 만드는 자기주도 학습에 최적화되어 있습니다. 배우는 것 자체를 즐거워합니다.
                     </p>
                 </div>
@@ -235,28 +263,32 @@
     </section>
 
     <!-- 4. Key Experience Timeline (히스토리) -->
-    <section id="timeline" class="py-24 bg-slate-50 border-y border-slate-200/80 relative">
+    <section id="timeline" class="py-16 sm:py-24 bg-slate-50 border-y border-slate-200/80 relative">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-16">
                 <span class="text-brand-600 text-xs font-bold tracking-widest uppercase block mb-2">My History</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">개척자 최장현의 단단한 자취</h2>
-                <p class="text-slate-500 text-sm sm:text-base mt-2 max-w-xl mx-auto">글로벌 무대부터 독도, 그리고 실전 무역 전선까지 깊은 발자국들</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">개척자 최장현의 단단한 자취</h2>
+                <p class="text-slate-500 text-xs sm:text-base mt-2 max-w-xl mx-auto">글로벌 무대부터 독도, 그리고 실전 무역 전선까지 깊은 발자국들</p>
             </div>
 
-            <!-- Vertical Timeline Layout -->
+            <!-- Vertical/Responsive Timeline Layout -->
             <div class="relative max-w-3xl mx-auto">
-                <!-- Center Line -->
+                <!-- Center Line (Mobile: Left-aligned, Desktop: Center-aligned) -->
                 <div class="absolute left-6 sm:left-1/2 transform sm:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-600 to-indigo-400/20"></div>
 
-                <!-- Step 1 -->
+                <!-- Step 1: 남경대학교 (남경대_3.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch mb-12 sm:mb-16">
-                    <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0">
-                        <div class="p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-brand-500/30 smooth-transition shadow-sm hover:shadow-md">
-                            <span class="text-xs font-extrabold text-brand-600">🎓 GLOBAL INSIGHT</span>
-                            <h3 class="text-lg font-black text-slate-900 mt-1 mb-2">남경대학교 국제정치학 전공</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0 w-full">
+                        <div class="p-5 sm:p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-brand-500/30 smooth-transition shadow-sm hover:shadow-md">
+                            <span class="text-[10px] font-extrabold text-brand-600">🎓 GLOBAL INSIGHT</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 mt-1 mb-2">남경대학교 국제정치학 전공</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
                                 글로벌 국제관계와 패권을 공부하며 넓은 시야를 구축했습니다. 현지에서 익힌 중국어 실력과 다양한 글로벌 파트너들과 공감하며 소통하는 뼈대를 완성했습니다.
                             </p>
+                            <!-- 남경대 이미지 삽입 -->
+                            <div class="overflow-hidden rounded-xl border border-slate-100 shadow-sm mt-3">
+                                <img src="남경대_3.jpg" alt="남경대학교" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition" onerror="this.src='https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=600';">
+                            </div>
                         </div>
                     </div>
                     <!-- Indicator Node -->
@@ -264,36 +296,44 @@
                     <div class="hidden sm:block sm:w-1/2"></div>
                 </div>
 
-                <!-- Step 2 -->
+                <!-- Step 2: 독도경비대 (독도경비대_3.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch mb-12 sm:mb-16">
                     <div class="hidden sm:block sm:w-1/2"></div>
                     <!-- Indicator Node -->
                     <div class="absolute left-6 sm:left-1/2 transform -translate-x-1/2 top-6 w-4 h-4 rounded-full bg-white border-4 border-indigo-500 z-10"></div>
                     
-                    <div class="sm:w-1/2 sm:pl-12 pl-12">
-                        <div class="p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-indigo-500/30 smooth-transition shadow-sm hover:shadow-md">
-                            <span class="text-xs font-extrabold text-indigo-600">🛡️ GRIT & RESPONSIBILITY</span>
-                            <h3 class="text-lg font-black text-slate-900 mt-1 mb-2">독도경비대 취사병 근무</h3>
-                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    <div class="sm:w-1/2 sm:pl-12 pl-12 w-full">
+                        <div class="p-5 sm:p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-indigo-500/30 smooth-transition shadow-sm hover:shadow-md">
+                            <span class="text-[10px] font-extrabold text-indigo-600">🛡️ GRIT & RESPONSIBILITY</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 mt-1 mb-2">독도경비대 취사병 근무</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-4">
                                 파도가 몰아치는 대한민국 영토의 동쪽 끝, 독도를 수호하며 전우들의 든든한 식사를 책임졌습니다. 험난한 고립 환경 속에서도 하루의 활력이 될 급식을 매시간 완수하며, 극한의 협업 체계와 체력을 구축했습니다.
                             </p>
+                            <!-- 독도경비대 이미지 삽입 -->
+                            <div class="overflow-hidden rounded-xl border border-slate-100 shadow-sm mt-3">
+                                <img src="독도경비대_3.jpg" alt="독도경비대" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600';">
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Step 3 -->
+                <!-- Step 3: 효성티앤씨 무역부문 (사내 방송_3.jpg) -->
                 <div class="relative flex flex-col sm:flex-row items-stretch">
-                    <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0">
-                        <div class="p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-amber-500/30 smooth-transition shadow-sm hover:shadow-md">
-                            <span class="text-xs font-extrabold text-amber-500">🚢 BUSINESS EXCELLENCE</span>
-                            <h3 class="text-lg font-black text-slate-900 mt-1 mb-2">효성티앤씨 무역부문 철강 수출</h3>
+                    <div class="sm:w-1/2 sm:pr-12 sm:text-right pl-12 sm:pl-0 w-full">
+                        <div class="p-5 sm:p-6 bg-white border border-slate-200/80 rounded-2xl hover:border-amber-500/30 smooth-transition shadow-sm hover:shadow-md">
+                            <span class="text-[10px] font-extrabold text-amber-500">🚢 BUSINESS EXCELLENCE</span>
+                            <h3 class="text-base sm:text-lg font-black text-slate-900 mt-1 mb-2">효성티앤씨 무역부문 철강 수출</h3>
                             <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-3">
                                 인도, 일본, 동남아 시장을 전담하며 거친 시장을 개척했습니다.
                             </p>
                             <!-- Highlight Project Block -->
-                            <div class="p-4 bg-slate-50 border border-slate-200/60 rounded-xl text-left text-xs text-slate-600 leading-relaxed">
+                            <div class="p-3 sm:p-4 bg-slate-50 border border-slate-200/60 rounded-xl text-left text-xs text-slate-600 leading-relaxed mb-4">
                                 <span class="font-bold text-slate-900 block mb-1">💡 대표 수행 프로젝트</span>
                                 스페인 풍력 에너지 업체의 인도 진출 사업에서 핵심 소재인 한국산 철강 공급 전담. 인도 현지 풍력 타워 생산 파트너에게 한국산 철강을 수입 및 공급하고, 완성된 타워를 유럽(독일, 루마니아, 폴란드) 시장으로 무사히 재수출하는 거대 밸류체인을 매끄럽게 핸들링했습니다.
+                            </div>
+                            <!-- 사내 방송 이미지 삽입 -->
+                            <div class="overflow-hidden rounded-xl border border-slate-100 shadow-sm mt-3">
+                                <img src="사내 방송_3.jpg" alt="효성티앤씨 사내 방송 인터뷰" class="w-full h-44 sm:h-52 object-cover hover:scale-105 smooth-transition" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600';">
                             </div>
                         </div>
                     </div>
@@ -307,16 +347,16 @@
     </section>
 
     <!-- 5. Gallery Section (인스타그램 풍 9칸 그리드) -->
-    <section id="gallery" class="py-24 bg-white">
+    <section id="gallery" class="py-16 sm:py-24 bg-white">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
+            <div class="text-center mb-12">
                 <span class="text-brand-600 text-xs font-bold tracking-widest uppercase block mb-2">My Daily Life</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">최장현의 오늘과 일상들</h2>
-                <p class="text-slate-500 text-sm sm:text-base mt-2">일할 땐 열정적으로, 쉴 땐 따뜻하게 채워내는 순간들</p>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">최장현의 오늘과 일상들</h2>
+                <p class="text-slate-500 text-xs sm:text-base mt-2">일할 땐 열정적으로, 쉴 땐 따뜻하게 채워내는 순간들</p>
             </div>
 
             <!-- 9 Grid Instagram Style -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
                 <!-- Post 1 -->
                 <div class="group relative overflow-hidden rounded-2xl bg-slate-100 aspect-square smooth-transition hover:shadow-lg border border-slate-200">
                     <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/10 to-transparent z-10 opacity-80 group-hover:opacity-90 smooth-transition"></div>
@@ -420,20 +460,20 @@
     </section>
 
     <!-- 6. CTA Section (나 더 알아보기) -->
-    <section id="cta" class="py-24 bg-brand-950 relative overflow-hidden text-center text-white border-t border-slate-800">
+    <section id="cta" class="py-20 sm:py-24 bg-brand-950 relative overflow-hidden text-center text-white border-t border-slate-800">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-600/10 rounded-full blur-[140px] pointer-events-none"></div>
         <div class="max-w-3xl mx-auto px-6 relative z-10 space-y-6">
             <span class="text-brand-400 text-xs font-extrabold tracking-widest uppercase block">READY TO COMMUNICATE</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">
-                개발 대륙을 함께 종횡무진할<br>팀원을 원하십니까?
+            <h2 class="text-2xl sm:text-4xl font-extrabold leading-tight">
+                개발 대륙을 함께 종횡무진할<br class="hidden sm:block">팀원을 원하십니까?
             </h2>
-            <p class="text-slate-400 text-sm max-w-xl mx-auto leading-relaxed">
+            <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto leading-relaxed">
                 글로벌 시야, 타협 없는 끈기, 그리고 동료의 에너지를 돋우는 '맛있는 서포트력'을 겸비했습니다. 아래 버튼을 눌러 저의 일상과 포토 그리드를 구경해 보세요!
             </p>
 
-            <div class="pt-6">
+            <div class="pt-4">
                 <!-- Hover 시 살짝 확대되며 5번 섹션(gallery)으로 스크롤되는 버튼 인터랙션 적용 -->
-                <button onclick="scrollToGallery()" class="px-8 py-4 bg-white hover:bg-slate-100 text-brand-950 font-extrabold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 inline-flex items-center gap-2 group cursor-pointer">
+                <button onclick="scrollToGallery()" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-slate-100 text-brand-950 font-extrabold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 inline-flex items-center justify-center gap-2 group cursor-pointer text-sm">
                     <span>나 더 알아보기 (갤러리 이동)</span>
                     <i data-lucide="image" class="w-5 h-5 group-hover:translate-x-1 smooth-transition text-brand-900"></i>
                 </button>
@@ -442,36 +482,36 @@
     </section>
 
     <!-- Footer Section -->
-    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-16">
-        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <div class="space-y-4">
-                <div class="flex items-center gap-3">
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-12 sm:py-16">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-3">
                     <span class="text-lg font-black tracking-wider text-white">THE PIONEER</span>
                     <span class="text-slate-700">|</span>
                     <span class="text-xs text-slate-500">SSAFY 16th Challenger Profile</span>
                 </div>
-                <p class="text-xs text-slate-500 leading-relaxed max-w-sm">
+                <p class="text-xs text-slate-500 leading-relaxed max-w-sm mx-auto md:mx-0">
                     최장현의 성장 일지는 SSAFY 과정을 따라 매 순간 새롭게 업데이트됩니다. 함께할 멋진 프로젝트와 스펙타클한 시너지를 기대합니다.
                 </p>
             </div>
             
-            <div class="flex flex-col sm:items-end gap-6 text-sm">
+            <div class="flex flex-col items-center md:items-end gap-6 text-sm">
                 <!-- Contact info & Links -->
-                <div class="flex flex-col sm:items-end gap-2 text-xs sm:text-sm">
-                    <span class="font-bold text-white uppercase text-xs tracking-wider text-slate-500">Contact Address</span>
+                <div class="flex flex-col items-center md:items-end gap-2 text-xs sm:text-sm">
+                    <span class="font-bold text-white uppercase text-xs tracking-wider text-slate-500 mb-1">Contact Address</span>
                     <a href="mailto:janghyun.pioneer@gmail.com" class="hover:text-white smooth-transition flex items-center gap-2">
                         <i data-lucide="mail" class="w-4 h-4"></i>
                         <span>janghyun.pioneer@gmail.com</span>
                     </a>
-                    <span class="flex items-center gap-2">
+                    <span class="flex items-center gap-2 text-slate-400">
                         <i data-lucide="phone" class="w-4 h-4"></i>
                         <span>+82-10-XXXX-XXXX (SSAFY 16기 소통망)</span>
                     </span>
                 </div>
                 
-                <div class="flex items-center gap-6 pt-4 border-t border-slate-800 w-full sm:w-auto justify-start sm:justify-end">
+                <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-4 border-t border-slate-800 w-full justify-center md:justify-end text-center">
                     <a href="https://www.ssafy.com" target="_blank" class="hover:text-white smooth-transition text-xs font-bold text-brand-400">SSAFY 공식 홈</a>
-                    <span class="text-slate-800">|</span>
+                    <span class="hidden sm:inline text-slate-800">|</span>
                     <span class="text-xs text-slate-600">© 2026 Choi Jang-Hyun. All rights reserved.</span>
                 </div>
             </div>
@@ -482,6 +522,34 @@
     <script>
         // Lucide Icons Render
         lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                // 아이콘 동적 변경 (메뉴 <-> 닫기)
+                const icon = menuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.setAttribute('data-lucide', 'menu');
+                } else {
+                    icon.setAttribute('data-lucide', 'x');
+                }
+                lucide.createIcons();
+            });
+            
+            // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    const icon = menuBtn.querySelector('i');
+                    icon.setAttribute('data-lucide', 'menu');
+                    lucide.createIcons();
+                });
+            });
+        }
 
         // CTA 버튼 클릭 시 살짝 확대 후 스크롤
         function scrollToGallery() {
